@@ -1,26 +1,23 @@
 <template>
     <div class="container mt-5">
-        <h1 class="display-3 fw-bold mb-2">NeoJapan Tienda</h1>
-        <p class="fs-4 text-muted">Compra y Venta de Videojuegos</p>
+        <h1 class="display-3 fw-bold text-primary mb-2 text-center">NeoJapan Tienda</h1>
+        <p class="fs-4 text-secondary text-center">Compra y Venta de Videojuegos</p>
     </div>
 
     <div class="container">
-        <div class="table-responsive mt-5 text-center">
-            <table class="table mx-auto">
-                <thead class="text-uppercase table-light">
+        <div class="table-responsive mt-5">
+            <table class="table table-striped table-bordered table-hover mx-auto text-center">
+                <thead class="table-dark text-uppercase">
                     <tr>
-                        <th scope="col" v-for="(head, index) in headers" :key="index">{{
-                            head }}
-                        </th>
+                        <th scope="col" v-for="(head, index) in headers" :key="index">{{ head }}</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="game in gamesStore.games" :key="game.codigo">
-                        <td v-for="(value, index) in Object.values(game).slice(0, -1)" :key="index">{{ value }}
-                        </td>
+                        <td v-for="(value, index) in Object.values(game).slice(0, -1)" :key="index">{{ value }}</td>
                         <td>
-                            <button class="btn btn-outline-success btn-sm me-3"
+                            <button class="btn btn-outline-success btn-sm me-2"
                                 @click="aumentarStock(game.codigo)">Agregar</button>
                             <button class="btn btn-outline-danger btn-sm"
                                 @click="disminuirStock(game.codigo)">Vender</button>
@@ -30,7 +27,6 @@
             </table>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -64,7 +60,7 @@ export default {
     },
     created() {
         this.gamesStore.fetchGames().then(() => {
-            this.capturarHeaders(); // Capturar los headers una vez que los juegos han sido obtenidos
+            this.capturarHeaders() // Capturar los headers una vez que los juegos han sido obtenidos
         });
     }
 };
