@@ -14,8 +14,10 @@
                     <td v-for="(value, index) in Object.values(game).slice(0, -1)" :key="index">{{ value }}
                     </td>
                     <td>
-                        <button class="btn btn-outline-success btn-sm me-3">Agregar</button>
-                        <button class="btn btn-outline-danger btn-sm">Quitar</button>
+                        <button class="btn btn-outline-success btn-sm me-3"
+                            @click="aumentarStock(game.codigo)">Agregar</button>
+                        <button class="btn btn-outline-danger btn-sm"
+                            @click="disminuirStock(game.codigo)">Quitar</button>
                     </td>
                 </tr>
             </tbody>
@@ -41,6 +43,12 @@ export default {
                 // Eliminar columna "color"
                 this.headers.pop()
             }
+        },
+        aumentarStock(index) {
+            this.gamesStore.aumentarStock(index)
+        },
+        disminuirStock(index) {
+            this.gamesStore.disminuirStock(index)
         }
     },
     computed: {
