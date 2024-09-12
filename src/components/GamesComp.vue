@@ -1,28 +1,36 @@
 <template>
-    <div class="table-responsive mt-5 text-center">
-        <table class="table w-75 mx-auto">
-            <thead class="text-uppercase table-light">
-                <tr>
-                    <th scope="col" v-for="(head, index) in headers" :key="index">{{
-                        head }}
-                    </th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="game in gamesStore.games" :key="game.codigo">
-                    <td v-for="(value, index) in Object.values(game).slice(0, -1)" :key="index">{{ value }}
-                    </td>
-                    <td>
-                        <button class="btn btn-outline-success btn-sm me-3"
-                            @click="aumentarStock(game.codigo)">Agregar</button>
-                        <button class="btn btn-outline-danger btn-sm"
-                            @click="disminuirStock(game.codigo)">Quitar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container mt-5">
+        <h1 class="display-3 fw-bold mb-2">NeoJapan Tienda</h1>
+        <p class="fs-4 text-muted">Compra y Venta de Videojuegos</p>
     </div>
+
+    <div class="container">
+        <div class="table-responsive mt-5 text-center">
+            <table class="table mx-auto">
+                <thead class="text-uppercase table-light">
+                    <tr>
+                        <th scope="col" v-for="(head, index) in headers" :key="index">{{
+                            head }}
+                        </th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="game in gamesStore.games" :key="game.codigo">
+                        <td v-for="(value, index) in Object.values(game).slice(0, -1)" :key="index">{{ value }}
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-success btn-sm me-3"
+                                @click="aumentarStock(game.codigo)">Agregar</button>
+                            <button class="btn btn-outline-danger btn-sm"
+                                @click="disminuirStock(game.codigo)">Vender</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </template>
 
 <script>
